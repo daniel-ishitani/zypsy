@@ -26,3 +26,11 @@ Alternatively, you can use `design.png` file.
 The project requires **node >=18.19**, so check if you have the correct version. Install yarn globally `npm install -g yarn`, then install the dependencies with `yarn` on the backend folder.
 
 Run `yarn` in backend folder to install dependencies. Run the server with `yarn start`. The API is served at [http://localhost:9000](http://localhost:9000/), and you can go to `/docs` to explore the API documentation.
+
+## Starting the frontend
+
+The fronted was developed using **node v22.11.0**. Install the dependencies with `npm install --legacy-peer-deps` in the frontend folder.
+
+Run the server with `npm run dev`. The app is served at [http://localhost:3000](http://localhost:3000/).
+
+Run tests with `npm run test` or `npm run test -- path/to/test/file` if you want to run a single test.
