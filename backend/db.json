@@ -3,12 +3,12 @@
     {
       "id": "fa572550-ee37-4c33-9b91-8a69f902175c",
       "name": "Cooking",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": "fb572550-ee37-4c33-9b91-8a69f902175c",
       "name": "Latest Tech News",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": "0e6f3713-bbf9-4a56-a653-8743960176b7",

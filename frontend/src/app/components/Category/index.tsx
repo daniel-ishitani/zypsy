@@ -63,7 +63,7 @@ export const Category = ({ category }: { category: CategoryType }) => {
                 {category.name}
             </button>
             <button
-                aria-label={`${category.favorite ? "Add to" : "Remove from"} favorites`}
+                aria-label={`${category.favorite ? "Remove from" : "Add to"} favorites`}
                 aria-disabled={mutation.isPending}
                 className={styles.favorite}
                 onClick={handleToggleFavorite}
