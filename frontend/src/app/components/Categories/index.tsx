@@ -1,8 +1,9 @@
 "use client"
-import { useState } from "react"
+
+import { useContext, useState } from "react"
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
-import { Category as CategoryType } from "@/app/types"
+import { CategoriesContext } from "@/app/categoriesContainer";
 
 import { Category } from "../Category"
 import styles from "./categories.module.css"
@@ -24,14 +25,15 @@ const Option = ({ id, label }: {
     </div>
 )
 
-export const Categories = ({ categories }: { categories: CategoryType[]}) => {
+export const Categories = () => {
+    const categories = useContext(CategoriesContext)
     const [filterBy, setFilterBy] = useState<FilterBy>("all")
 
     const handleFilterChange = (nextFilterBy: string) => {
         setFilterBy(nextFilterBy as FilterBy)
     }
 
-    const filteredCategories = filterBy === "all" ? categories : categories.filter(category => category.favorite)
+    const filteredCategories = filterBy === "all" ? categories?.data : categories?.data.filter(category => category.favorite)
 
     return (
         <nav className={styles.nav}>
@@ -41,7 +43,7 @@ export const Categories = ({ categories }: { categories: CategoryType[]}) => {
             </RadioGroup.Root>
 
             <div className={styles.categories}>
-                {filteredCategories.map(category => (
+                {filteredCategories?.map(category => (
                     <Category category={category} key={category.id}/>
                 ))}
             </div>

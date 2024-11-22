@@ -4,6 +4,16 @@ import { Category } from "../Category"
 import { formatDate } from "./helpers"
 import styles from "./post.module.css"
 
+const Placeholder = () => (
+    <div className={styles.post}>
+        <div className={styles.placeholder} />
+        <div className={styles.descriptionPlaceholder}>
+            {Array(3).fill(null).map((placeholder, i) => <div className={styles.placeholder} key={i} />)}
+        </div>
+        <div className={styles.categoryPlaceholder} />
+    </div>
+)
+
 export const Post = ({ post, categoryMap }: { post: PostType, categoryMap: Map<string, CategoryType> }) => {
     const categories = post.categories.map(category => categoryMap.get(category) as CategoryType)
 
@@ -19,3 +29,5 @@ export const Post = ({ post, categoryMap }: { post: PostType, categoryMap: Map<s
         </article>
     )
 }
+
+Post.Placeholder = Placeholder

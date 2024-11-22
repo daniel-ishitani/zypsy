@@ -1,6 +1,9 @@
 "use client"
-import { useSearchParams } from "next/navigation"
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+
+import { CATEGORIES_QUERY_KEY } from "@/app/categoriesContainer"
 import { Category as CategoryType } from "@/app/types"
 
 import styles from "./category.module.css"
@@ -21,15 +24,50 @@ const Icon = ({ isFavorite }: { isFavorite: boolean }) => (
 )
 
 export const Category = ({ category }: { category: CategoryType }) => {
+    const queryClient = useQueryClient()
     const searchParams = useSearchParams()
+    const router = useRouter()
+    const pathname = usePathname()
     const isActive = searchParams.get("category") === category.id
+    const mutation = useMutation({
+        mutationFn: () => {
+            return fetch(`http://localhost:9000/categories/${category.id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    ...category,
+                    favorite: !category.favorite,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: CATEGORIES_QUERY_KEY })
+        }
+    })
+
+    const handleCategoryClick = () => {
+        router.push(`${pathname}?category=${category.id}`)
+    }
+
+    const handleToggleFavorite = () => {
+        if (mutation.isPending) return
+        
+        mutation.mutate()
+    }
 
     return (
         <div className={`${styles.wrapper} ${isActive ? styles.secondary : styles.primary}`}>
-            <button className={styles.category}>
+            <button className={styles.category} onClick={handleCategoryClick}>
                 {category.name}
             </button>
-            <button aria-label="Add to favorites" className={styles.favorite}>
+            <button
+                aria-label={`${category.favorite ? "Add to" : "Remove from"} favorites`}
+                aria-disabled={mutation.isPending}
+                className={styles.favorite}
+                onClick={handleToggleFavorite}
+            >
                 <Icon isFavorite={category.favorite} />
             </button>
         </div>

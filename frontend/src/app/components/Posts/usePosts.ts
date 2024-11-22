@@ -10,11 +10,11 @@ const getPosts = async (categoryId?: string): Promise<Post[]> => {
 }
 
 export const usePosts = (categoryId?: string) => {
-    const query = useQuery({
+    const posts = useQuery({
         queryKey: ["posts", categoryId],
         queryFn: () => getPosts(categoryId),
         enabled: Boolean(categoryId),
     })
 
-    return query
+    return posts
 }
