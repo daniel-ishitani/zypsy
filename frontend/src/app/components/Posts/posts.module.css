@@ -1,0 +1,19 @@
+.wrapper {
+    border: 1px solid var(--gray-1);
+    border-radius: .25rem;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 2.25rem;
+    border-bottom: 1px solid var(--gray-0);
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 1.5rem;
+    color: var(--gray-2);
+}
+
+.posts {
+    padding: 0 1rem;
+}

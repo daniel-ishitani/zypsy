@@ -1,0 +1,10 @@
+.page {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+}
+
+.main {
+  padding: 4rem 1.5rem;
+  height: 100dvh;
+  overflow: auto;
+}

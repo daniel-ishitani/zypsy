@@ -1,0 +1,51 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    font-size: .875rem;
+    line-height: 1.5rem;
+}
+
+.post:not(:last-child) {
+    border-bottom: 1px solid var(--gray-1);
+}
+
+.date {
+    font-weight: 600;
+    font-size: inherit;
+    color: var(--green-0);
+}
+
+.description {
+    font-weight: 400;
+    color: var(--gray-2);
+}
+
+.categories {
+    display: flex;
+    gap: .5rem;
+}
+
+.placeholder {
+    background: var(--gray-0);
+    border-radius: .25rem;
+    height: .875rem;
+    width: 100%;
+}
+
+.descriptionPlaceholder {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 100%;
+}
+
+.categoryPlaceholder {
+    background: var(--gray-0);
+    border-radius: .25rem;
+    height: 2.5rem;
+    width: 10rem;
+}
